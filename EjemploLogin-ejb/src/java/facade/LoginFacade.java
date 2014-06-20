@@ -6,6 +6,8 @@
 
 package facade;
 
+import Utils.CatchException;
+import Utils.Loggable;
 import Utils.LoggingInterceptor;
 import entidades.Login;
 import java.util.logging.Logger;
@@ -20,8 +22,10 @@ import javax.persistence.Query;
  *
  * @author juanma
  */
-//@Stateless
+@Stateless
 // @Interceptors(LoggingInterceptor.class)
+@Loggable
+@CatchException
 public class LoginFacade extends AbstractFacade<Login> {
 //        @Inject
 //    private Logger logger;

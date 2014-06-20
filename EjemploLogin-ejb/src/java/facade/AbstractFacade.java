@@ -17,7 +17,7 @@ import javax.persistence.EntityManager;
  *
  * @author juanma
  */
-
+@Loggable
 public abstract class AbstractFacade<T> {
     
 

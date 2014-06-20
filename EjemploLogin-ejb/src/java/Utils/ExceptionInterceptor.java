@@ -27,10 +27,11 @@ import java.util.logging.Logger;
  */
 @Interceptor
 @CatchException
+@Loggable
 public class ExceptionInterceptor implements Serializable {
 
-    @Inject
-    private Logger log;
+//    @Inject
+//    private Logger log;
 
     @AroundInvoke
     public Object catchException(InvocationContext ic) throws Exception {
@@ -38,7 +39,7 @@ public class ExceptionInterceptor implements Serializable {
             return ic.proceed();
         } catch (Exception e) {
             addErrorMessage(e.getMessage());
-            log.severe("/!\\ " + ic.getTarget().getClass().getName() + " - " + ic.getMethod().getName() + " - " + e.getMessage());
+        //    log.severe("/!\\ " + ic.getTarget().getClass().getName() + " - " + ic.getMethod().getName() + " - " + e.getMessage());
             e.printStackTrace();
         }
         return null;

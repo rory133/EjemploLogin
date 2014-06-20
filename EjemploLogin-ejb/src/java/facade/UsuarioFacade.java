@@ -6,6 +6,7 @@
 
 package facade;
 
+import Utils.Loggable;
 import entidades.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author juanma
  */
+@Loggable
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
     @PersistenceContext(unitName = "EjemploLogin-ejbPU")

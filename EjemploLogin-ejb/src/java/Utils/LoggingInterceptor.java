@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 @Loggable
 @Interceptor
-public class LoggingInterceptor implements Serializable{
+public class LoggingInterceptor {
     @Inject
     private transient  Logger logger;
 

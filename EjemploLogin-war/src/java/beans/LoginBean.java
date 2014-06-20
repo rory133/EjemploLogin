@@ -6,6 +6,7 @@
 
 package beans;
 
+import Utils.Loggable;
 import entidades.Login;
 import entidades.Usuario;
 import facade.LoginFacade;
@@ -21,6 +22,7 @@ import javax.inject.Named;
  *
  * @author juanma
  */
+@Loggable
 @Named(value = "loginBean")
 @RequestScoped
 public class LoginBean {
@@ -33,7 +35,11 @@ public class LoginBean {
     private Login loginActual;
 
     public Login getLoginActual() {
+        System.out.println("*getLoginAcutal");
+        //System.out.println(getClass().getClassLoader().getResource("bean.xml"));
+        //System.out.println(ClassName.class.getClassLoader().getResource("logging.properties"));
         if (loginActual ==null){
+            System.out.println("***getLoginAcutal loginAcutal==null");
             loginActual=(new Login());
             loginActual.setUsuarioIdusuario(new Usuario());
         }
