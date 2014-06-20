@@ -54,6 +54,7 @@ public class LoginBean {
     
     
     public LoginBean() { 
+       
     }
     
     public String validarLogin(){

@@ -56,7 +56,7 @@ public Logger produceLogger(InjectionPoint injectionPoint) throws IOException {
 
         // se configura el logger con un fileHandler y el formato  
       //  fh = new FileHandler("C:/logs/MyLogFile.%u.%g.log",1024 * 1024, 1, true);  
-        fh = new FileHandler("C:/logs/MyLogFile.%g.log",1024 * 1024,5, true); 
+        fh = new FileHandler("C:/logs/MyLogFile.%u.%g.log",1024 * 1024,2, true); 
         SimpleFormatter formatter = new SimpleFormatter();  
         fh.setFormatter(formatter);  
         Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName()).addHandler(fh);

@@ -18,6 +18,7 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import javax.annotation.Priority;
 
 /**
  * @author Antonio Goncalves
@@ -27,19 +28,21 @@ import java.util.logging.Logger;
  */
 @Interceptor
 @CatchException
+@Priority(150)
 @Loggable
 public class ExceptionInterceptor implements Serializable {
 
-//    @Inject
-//    private Logger log;
+    @Inject
+    private Logger log;
 
     @AroundInvoke
     public Object catchException(InvocationContext ic) throws Exception {
         try {
             return ic.proceed();
         } catch (Exception e) {
-            addErrorMessage(e.getMessage());
-        //    log.severe("/!\\ " + ic.getTarget().getClass().getName() + " - " + ic.getMethod().getName() + " - " + e.getMessage());
+            System.out.println("*catchException");
+            addErrorMessage("prubaaaaaaaaaaaaaa "+e.getMessage());
+         log.severe("/!\\ " + ic.getTarget().getClass().getName() + " - " + ic.getMethod().getName() + " - " + e.getMessage());
             e.printStackTrace();
         }
         return null;
@@ -48,6 +51,6 @@ public class ExceptionInterceptor implements Serializable {
     // TODO to refactor with Controller methods
     protected void addErrorMessage(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR , message +"   holita", null));
     }
 }

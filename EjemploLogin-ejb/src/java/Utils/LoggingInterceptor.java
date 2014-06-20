@@ -4,17 +4,19 @@ package Utils;
  *
  * @author juanma
  */
+import java.io.Serializable;
+import java.util.logging.Logger;
+import javax.annotation.Priority;
 import javax.inject.Inject;
+import javax.interceptor.AroundConstruct;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import java.io.Serializable;
-import java.util.logging.Logger;
 
-
-@Loggable
 @Interceptor
-public class LoggingInterceptor {
+@Loggable
+@Priority(100)
+public class LoggingInterceptor implements Serializable {
     @Inject
     private transient  Logger logger;
 
@@ -30,8 +32,17 @@ public class LoggingInterceptor {
         }
     }
     
-    
-    
+    @AroundConstruct
+    private void init(InvocationContext ic) throws Exception {
+        logger.info("entrando en constructor ");
+        try {
+            ic.proceed();
+        } finally {
+//            logger.fine("fine- My logging interceptor constructor: Exiting");
+//            logger.info("info -My logging interceptor constructor: Exiting");
+            logger.info(" iniciado: "+ic.getTarget().getClass().getName());
+        }
+    }
     
     
 }
